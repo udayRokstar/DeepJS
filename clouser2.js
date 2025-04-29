@@ -8,7 +8,6 @@ function oneTime() {
 
         } else {
             console.log('First Time called here', arg);
-
             test++;
         }
     }
