@@ -1,59 +1,42 @@
+<!DOCTYPE html>
 <html>
-
 <head>
+  <title>Event Bubbling Example</title>
   <style>
-    div {
-  width: 300px;
-}
-
-
-div {
-  height: 120vh; /* This will create vertical scroll */
-}
-
-  </style>
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script> -->
-  <script>
-//     async function getData() {
-//       const url = "https://example.org/products.json";
-//     axios.get(url, {name: "data"}).then(function (response) {
-//         console.log(response)
-//         // do whatever you want if console is [object object] then stringify the response
-//     })
-// }
-
-//     getData();
-function throttle(func, delay) {
-  let lastCall = 0;
-
-  return function (...args) {
-    const now = Date.now();
-
-    if (now - lastCall >= delay) {
-      lastCall = now;
-      func.apply(this, args);
+    #outer {
+      padding: 40px;
+      background-color: lightblue;
     }
-  };
-}
-
-function sayHello() {
-  console.log('Hello!', new Date().toLocaleTimeString());
-}
-
-const throttledHello = throttle(sayHello, 2000); // Allow once every 2 seconds
-
-// Call it every 500ms (simulate rapid events like scroll or typing)
-let interval = setInterval(throttledHello, 500);
-
-// Stop after 6 seconds
-setTimeout(() => clearInterval(interval), 6000);
-
-  </script>
+    #inner {
+      padding: 20px;
+      background-color: lightcoral;
+    }
+    #body {
+        padding: 60px;
+        background-color: darkcyan;
+    }
+  </style>
 </head>
+<body id="body">
 
-<body>
-  <div style="height: 78%;">test</div>
-  <button id="myBtn">click</button>
+  <div id="outer">
+    Outer Div
+    <div id="inner">Inner Div (Click me!)</div>
+  </div>
+
+  <script>
+    document.getElementById("outer").addEventListener("click", function () {
+      console.log("Outer div clicked");
+    });
+
+    document.getElementById("inner").addEventListener("click", function () {
+      console.log("Inner div clicked");
+    });
+
+    document.getElementById("body").addEventListener("click", function() {
+        console.log("Body is clicked")
+    })
+  </script>
+
 </body>
-
 </html>
